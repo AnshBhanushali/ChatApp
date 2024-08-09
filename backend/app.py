@@ -25,8 +25,10 @@ db = client.get_database()
 
 # Registeration
 from auth import auth_bp
+from chat import chat_bp
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
+app.register_blueprint(chat_bp, url_prefix='/api/chat')
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)
