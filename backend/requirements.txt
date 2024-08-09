@@ -1,0 +1,9 @@
+flask
+flask-socketio
+flask-cors
+flask-jwt-extended
+pymongo
+transformers
+spacy
+googletrans==4.0.0-rc1
+openai
