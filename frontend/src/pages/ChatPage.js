@@ -26,12 +26,10 @@ function ChatPage() {
 
     const sendMessage = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');
         try {
             const response = await axios.post(
                 `${process.env.REACT_APP_API_URL}/chat/message`,
-                { message, language },
-                { headers: { Authorization: `Bearer ${token}` } }
+                { message, language }
             );
             socket.emit('sendMessage', response.data.ai_response);
             setMessages((prev) => [...prev, { message, ai_response: response.data.ai_response }]);
