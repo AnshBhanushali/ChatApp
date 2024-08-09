@@ -15,3 +15,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def translate_message(message, target_language='en'):
     translated = translator.translate(message, dest=target_language)
     return translated.text
+
+# this functionality will analyze sentiment of the user for better response
+def analyze_sentiment(message):
+    sentiment = sentiment_analyzer(message)[0]
+    return sentiment['label']
+
+
