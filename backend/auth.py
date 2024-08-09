@@ -25,3 +25,18 @@ def register():
     })
 
     return jsonify({"msg": "User registered successfully"}), 201
+
+@auth_bp.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    user_collection = get_user_collection()
+    user = user_collection.find_one({"username": username})
+
+    if not user or not check_password_hash(user['password'], password):
+        return jsonify({"msg": "Invalid credentials"}), 401
+
+    access_token = create_access_token(identity=user['username'])
+    return jsonify(access_token=access_token), 200
