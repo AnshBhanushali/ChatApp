@@ -22,3 +22,11 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 # MongoDB Setup
 client = MongoClient(app.config['MONGO_URI'])
 db = client.get_database()
+
+# Registeration
+from auth import auth_bp
+
+app.register_blueprint(auth_bp, url_prefix='/api/auth')
+
+if __name__ == "__main__":
+    socketio.run(app, debug=True)
