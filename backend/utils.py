@@ -21,4 +21,19 @@ def analyze_sentiment(message):
     sentiment = sentiment_analyzer(message)[0]
     return sentiment['label']
 
+def generate_ai_response(message):
+    try:
+        response = openai.Completion.create(
+            engine="gpt-3.5-turbo",
+            prompt=message,
+            max_tokens=150,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+
+        return response.choices[0].text.strip()
+    except Exception as e:
+        return f"Error generating AI response: {str(e)}"
+
 
