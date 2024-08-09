@@ -16,3 +16,9 @@ jwt = JWTManager(app)
 
 # CORS Setup
 CORS(app)
+
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+# MongoDB Setup
+client = MongoClient(app.config['MONGO_URI'])
+db = client.get_database()
